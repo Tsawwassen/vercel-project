@@ -1,5 +1,6 @@
 // app/test_ssr/page.tsx
 import styles from "../page.module.css";
+import { GET as helloAPI } from '../api/hello/route';
 
 export const dynamic = 'force-dynamic'; // Tell Next.js to render at request time
 
@@ -8,14 +9,10 @@ const getBaseUrl = () => {
   return 'http://localhost:3000';
 };
 
-async function getHello() {
-  const res = await fetch(`${getBaseUrl()}/api/hello`, { cache: 'no-store' });
-  const data = await res.json();
-  return data;
-}
 
 export default async function Test_SSR() {
-  const helloData = await getHello();
+  const res = await helloAPI();
+  const helloData = await res.json();
 
   return (
     <div className={styles.page}>
