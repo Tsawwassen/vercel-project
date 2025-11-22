@@ -67,6 +67,8 @@ Frontend (Next.js)
 Backend (Vercel serverless via Next.js API routes)
   ⬇️ Drizzle ORM (using Neon DB connection string)
 Postgres (Neon)
+```
+
 
 # Refresher Note
 ## New Pages
