@@ -10,16 +10,17 @@ import React from 'react';
  * 
  */
 async function getHello() {
-  const res = await fetch(`${process.env.BASE_URL}/api/hello`);
+  // Relative path works in server components both locally and on Vercel
+  const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/hello`);
   const data = await res.json();
   return data;
 }
 
 export default async function Test_SSR() {
-
   const helloData = await getHello();
-  
-    return (
+
+  return (
     <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.intro}>
