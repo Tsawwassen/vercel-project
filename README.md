@@ -61,14 +61,11 @@ Used ChatGPT to give me a rough plan of action. This was not a copy/paste a full
 - - - Not a huge priority for me on this one, but I should learn some of it.
 
 ### Stack Visualization (Given by ChatGPT, used as a guide)
+```markdown
 Frontend (Next.js)
-  |
-  | fetch('/api/...') or server actions
-  ↓
+  ⬇️ fetch('/api/...') or server actions
 Backend (Vercel serverless via Next.js API routes)
-  |
-  | Drizzle ORM (using Neon DB connection string)
-  ↓
+  ⬇️ Drizzle ORM (using Neon DB connection string)
 Postgres (Neon)
 
 # Refresher Note
