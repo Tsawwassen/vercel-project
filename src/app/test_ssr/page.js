@@ -4,12 +4,6 @@ import { GET as helloAPI } from '../api/hello/route';
 
 export const dynamic = 'force-dynamic'; // Tell Next.js to render at request time
 
-const getBaseUrl = () => {
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return 'http://localhost:3000';
-};
-
-
 export default async function Test_SSR() {
   const res = await helloAPI();
   const helloData = await res.json();
