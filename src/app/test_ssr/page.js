@@ -9,10 +9,13 @@ import React from 'react';
  * SSR does handle top level async functions
  * 
  */
+const getBaseUrl = () => {
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return 'http://localhost:3000';
+};
+
 async function getHello() {
-  // Relative path works in server components both locally and on Vercel
-  const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
-  const res = await fetch(`${baseUrl}/api/hello`);
+  const res = await fetch(`${getBaseUrl()}/api/hello`, { cache: 'no-store' });
   const data = await res.json();
   return data;
 }
