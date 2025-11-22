@@ -1,14 +1,8 @@
+// app/test_ssr/page.tsx
 import styles from "../page.module.css";
-import React from 'react';
 
-/**
- * SSR Example
- * 
- * Fetch path must be absolute URL
- * Set the base url in the env variable. For local machine, define it as localhost:3000, for production, set the same variable on the server with the servers base url
- * SSR does handle top level async functions
- * 
- */
+export const dynamic = 'force-dynamic'; // Tell Next.js to render at request time
+
 const getBaseUrl = () => {
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   return 'http://localhost:3000';
