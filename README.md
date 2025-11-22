@@ -79,8 +79,8 @@ Postgres (Neon)
 - Create a folder inside the src/app/api folder, this new folder name will be the route.
 - Inside the folder, create a route.js file. This will be the code that is used when the route endpoint is fetched
 - to use SSR + Fetch, the path must be absolute URL, not relative.
-- - To solve this problem, I put the localhostL:3000 as an .env variable, and used that variable in the fetch path
-- - When the project is deployed, I would need to create a env variable on the server, and name it the same thing as the local variable for the code to function correctly.
+  - To solve this problem, I put the localhostL:3000 as an .env variable, and used that variable in the fetch path
+  - When the project is deployed, I would need to create a env variable on the server, and name it the same thing as the local variable for the code to function correctly.
 - If the fetch call was on a CSR page, then I can use relative
 ## CSR vs SSR
-- - See test_csr and test_ssr to see the same page rendered via SSR and CSR
+- See test_csr and test_ssr to see the same page rendered via SSR and CSR
