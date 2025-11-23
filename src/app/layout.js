@@ -26,9 +26,6 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-
-  debugger
-
   return (
     <ClerkProvider>
       <html lang="en">
