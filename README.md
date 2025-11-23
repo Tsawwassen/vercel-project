@@ -47,14 +47,14 @@ Long time since i've done this, so lets give it a try
 
 ## Plan
 Used ChatGPT to give me a rough plan of action. This was not a copy/paste a full working app. Im using actual 'Get Started' guides to learn each step of the stack to do what i need it to do based on the 'how can i do X' question that comes up
-- Frontend/Backend
+- DONE - Frontend/Backend
 - - Next.js
 - Database
 - - Postgres via Neon
 - ORM
 - - Drizzle ORM 
 - - - Not sure what this is tbh
-- Authentication
+- DONE - Authentication
 - - Clerk
 - UI
 - - Tailwind
@@ -77,9 +77,10 @@ Postgres (Neon)
 ## API
 - Create a folder inside the src/app/api folder, this new folder name will be the route.
 - Inside the folder, create a route.js file. This will be the code that is used when the route endpoint is fetched
-- to use SSR + Fetch, the path must be absolute URL, not relative.
-  - To solve this problem, I put the localhostL:3000 as an .env variable, and used that variable in the fetch path
-  - When the project is deployed, I would need to create a env variable on the server, and name it the same thing as the local variable for the code to function correctly.
-- If the fetch call was on a CSR page, then I can use relative
+- The path or the url was a strange one the handle. ended up just calling the api function directly rather then using a url. Seemed to work on SSR
+  - Still not satisfied with having the CSR and SSR looking different. Would prefer for them to be the same...
 ## CSR vs SSR
 - See test_csr and test_ssr to see the same page rendered via SSR and CSR
+# Authentication
+- This is done. super easy with Clerk documentation
+- Only need to update the proxy.js file to list pages on the 'allow' list
