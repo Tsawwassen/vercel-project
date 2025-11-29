@@ -5,7 +5,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
         <div className={styles.intro}>
-          <h1>Hello World</h1>
+          <h1>home</h1>
         </div>
       </main>
     </div>
