@@ -83,4 +83,23 @@ Postgres (Neon)
 - See test_csr and test_ssr to see the same page rendered via SSR and CSR
 # Authentication
 - This is done. super easy with Clerk documentation
-- Only need to update the proxy.js file to list pages on the 'allow' list
+- Proxy file tracks public pages. only authenticated users can see private pages. Change the logic in the IF statement to change if the list is private or public pages
+
+# Weekend 0
+- Current state
+  - User can login
+  - CSR and SSR are both functioning
+  - Able to block pages if user is not signed in
+
+# Weekend 1
+- Still to do
+  - Have a public page, other then the login
+  - Ensure that API is only accessible to my app (ie no public access)
+    - Can I make public and private API setup?
+  - Connect with a database
+    - Just do a basic CRUD setup
+    - Ensure that only my app can connect with the database
+
+
+# Future Plan Notes
+- Make two different access levels for users
