@@ -84,6 +84,17 @@ Postgres (Neon)
 # Authentication
 - This is done. super easy with Clerk documentation
 - Proxy file tracks public pages. only authenticated users can see private pages. Change the logic in the IF statement to change if the list is private or public pages
+# Database notes
+- drizzle.config.ts 
+  - Used to connect with the Neon database
+- schema.ts
+  - file to create database scema
+- After making changes to a database schema, run 'pnpm drizzle-kit generate'
+  - This will take the JS code and convert it to a sql type file (rough understanding)
+- To push the updates schema to Neon, run 'pnpm drizzle-kit migrate'
+  - This will push the new schema to Neon
+- src/lib/db.ts 
+  - TODO : figure out what this does
 
 # Weekend 0
 - Current state
