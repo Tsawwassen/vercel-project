@@ -93,12 +93,16 @@ Postgres (Neon)
 
 # Weekend 1
 - Still to do
-  - Have a public page, other then the login
-  - Ensure that API is only accessible to my app (ie no public access)
+  - DONE - Have a public page, other then the login
+  - DONE - Ensure that API is only accessible to my app (ie no public access)
     - Can I make public and private API setup?
+      - Yes I can, DONE
   - Connect with a database
     - Just do a basic CRUD setup
     - Ensure that only my app can connect with the database
+      - This might just work with the API routing if the user the auth'd or not.
+      - User auth might not be as secure as only allowing it from my backend, but its a temp solution
+      - Need to consider SSR and CSR pages are loaded with database information. again handle auth'd and not users.
 
 
 # Future Plan Notes
