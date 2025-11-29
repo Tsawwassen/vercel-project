@@ -4,6 +4,7 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
  * 
  * Add public routes to isPublicRoute
  * All other routes will be considered private
+ * Same logic can be used with API calls
  * 
  *  
  * */ 
@@ -12,7 +13,8 @@ const isPublicRoute  = createRouteMatcher([
   '/',
   '/about',
   '/sign-in(.*)', 
-  '/sign-up(.*)'
+  '/sign-up(.*)',
+  '/api/public(.*)'
 ])
 
 export default clerkMiddleware(async (auth, req) => {
