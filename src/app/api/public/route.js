@@ -1,5 +1,7 @@
-import { NextResponse } from 'next/server';
+import { db } from '../../../lib/db';
+import { users } from '../../../db/schema';
 
 export async function GET() {
-  return NextResponse.json({ message: 'public' });
+  const user = await db.select().from(users);
+  return Response.json({ ok: false, user });
 }
