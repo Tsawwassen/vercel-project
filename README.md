@@ -70,31 +70,63 @@ Postgres (Neon)
 ```
 
 
-# Refresher Note
+# Next.js Refresher Note
 ## New Pages
-- Createa folder inside the src/app folder, the new folder name will be the route.
+- Create a folder inside the src/app folder, the new folder name will be the route.
 - Inside the folder, create a page.js file. This will be what is loaded when viewing the route
 ## API
 - Create a folder inside the src/app/api folder, this new folder name will be the route.
 - Inside the folder, create a route.js file. This will be the code that is used when the route endpoint is fetched
-- The path or the url was a strange one the handle. ended up just calling the api function directly rather then using a url. Seemed to work on SSR
-  - Still not satisfied with having the CSR and SSR looking different. Would prefer for them to be the same...
-## CSR vs SSR
-- See test_csr and test_ssr to see the same page rendered via SSR and CSR
+- Accessing the API works differently on SSR and CSR
+  - SSR requires you to call the API as an imported function
+    - import { GET as helloAPI } from '../api/hello/route';
+    - const res = await helloAPI();
+  - CSR requires you to call the API as a fetch function
+    - const res = await fetch('/api/hello');
+    - const data = await res.json();
+
 # Authentication
 - This is done. super easy with Clerk documentation
-- Proxy file tracks public pages. only authenticated users can see private pages. Change the logic in the IF statement to change if the list is private or public pages
+- Add a proxy.js file inside /src
+  - Same level as /app. 
+  - The way im thinking of this is when the site gets a request, it enters the src folder, then proxy.js, then app folder
+  - The proxy file has a list of public routes. If the the route is added to the list, it can be accessed without being signed in
+    - The current example is a super basic setup. I'm not sure what else i can do in clerkMiddleware and what the config variable does
+  - any route not listed in this file will be considered private and require the user to be signed in
+    - If the user is not signed in and tries to access a private page, they will be redirected to a signin page
+    - currently using default Clerk settings
+  - Inside the layout.js file there is <SignedIn> and <SignedOut> tags which are used a conditional rendering different header links
+    - Basic example, im sure I can do something different. It was the default setting 
+  - Adding /api/public to the public route list will allow for public access to endpoints in the path
+    - and by deffinition, items in /api/private will be blocked if the user is not signed in.
+
+
 # Database notes
+- Full Documentation
+  - https://orm.drizzle.team/docs
 - drizzle.config.ts 
-  - Used to connect with the Neon database
+  - database info and project setup.
+  - I think it's used by Drizzle
 - schema.ts
-  - file to create database scema
-- After making changes to a database schema, run 'pnpm drizzle-kit generate'
-  - This will take the JS code and convert it to a sql type file (rough understanding)
-- To push the updates schema to Neon, run 'pnpm drizzle-kit migrate'
-  - This will push the new schema to Neon
+  - file to create database schema
+  - When I make a proper database, i should probably learn the syntax for making a relational database
+- Make database schema, 
+  - pnpm drizzle-kit generate
+    - This will take the JS code and convert it to a sql type file (rough understanding)
+- Push updated schema to Neon, 
+  - pnpm drizzle-kit migrate
+- Seed the database
+  - pnpm  ts-node src/db/seed.ts
 - src/lib/db.ts 
-  - TODO : figure out what this does
+  - This seems to be just a helper file to easily import the db object
+  - With this object, you can communicate with the database
+    - Example usage of the import is in the seed.ts file
+    - In actual usage, I can import db on the server to interact with the database
+  - Couple notes about the db connection object
+    - Drizzle allows me to use syntax like db.query.user.findFirst()
+      - {database}.{action}.{table}.{function}
+    - The Neon package is an easy way to connect to my Neon database, and then drizzle can use it that connection
+
 
 # Weekend 0
 - Current state
@@ -106,16 +138,19 @@ Postgres (Neon)
 - Still to do
   - DONE - Have a public page, other then the login
   - DONE - Ensure that API is only accessible to my app (ie no public access)
-    - Can I make public and private API setup?
-      - Yes I can, DONE
   - Connect with a database
     - Just do a basic CRUD setup
-    - Ensure that only my app can connect with the database
-      - This might just work with the API routing if the user the auth'd or not.
-      - User auth might not be as secure as only allowing it from my backend, but its a temp solution
-      - Need to consider SSR and CSR pages are loaded with database information. again handle auth'd and not users.
+    - DONE* - Ensure that only my app can connect with the database
+      - This is handled by clerk auth
+      - * The one thing to note is that if a user is allowed to access the database function
+        - Example, only select users have access to update a record
+    - Because the db object is only used on the server (either in private or public api folders), this will allow only my app to talk with the database
+      - Check if this is true
+      - NOTE - Never import the db object inside a 'use client' component. This would expose the database to the client
 
 
 # Future Plan Notes
-- Make two different access levels for users
+- Make different access levels for users
 - Do automated testing....
+- ESLint ?
+  - Currently there is a bug that giving me an error. This seems to be a know issue and only started a couple days ago
