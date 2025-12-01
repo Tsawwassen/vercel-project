@@ -32,20 +32,24 @@ export default function RootLayout({ children }) {
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <header className="flex justify-end items-center p-4 gap-4 h-16">
             <ul>
-            <SignedOut>
-              <SignInButton />
-              <li><SignUpButton>
-                <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton></li>
-              <li><a href='#'>Not Signed In</a></li>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-              <li><a href='/test_ssr'>SSR</a></li>
-              <li><a href='/test_csr'>CSR</a></li>
-            </SignedIn>
+              <SignedOut>
+                <SignInButton />
+                <li>
+                  <SignUpButton>
+                    <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                      Sign Up
+                    </button>
+                  </SignUpButton>
+                </li>
+                <li>
+                  <a href='#'>Not Signed In</a>
+                </li>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+                <li><a href='/test_ssr'>SSR</a></li>
+                <li><a href='/test_csr'>CSR</a></li>
+              </SignedIn>
             </ul>
           </header>
             {children}
