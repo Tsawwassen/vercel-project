@@ -53,7 +53,7 @@ Used ChatGPT to give me a rough plan of action. This was not a copy/paste a full
 - - Postgres via Neon
 - ORM
 - - Drizzle ORM 
-- - - Not sure what this is tbh
+- - This defines the syntax of how you communicate with the database
 - DONE - Authentication
 - - Clerk
 - UI
@@ -138,15 +138,20 @@ Postgres (Neon)
 - Still to do
   - DONE - Have a public page, other then the login
   - DONE - Ensure that API is only accessible to my app (ie no public access)
-  - Connect with a database
-    - Just do a basic CRUD setup
+  - DONE- Connect with a database
     - DONE* - Ensure that only my app can connect with the database
-      - This is handled by clerk auth
+      - This is handled by clerk auth and routing
       - * The one thing to note is that if a user is allowed to access the database function
         - Example, only select users have access to update a record
     - Because the db object is only used on the server (either in private or public api folders), this will allow only my app to talk with the database
-      - Check if this is true
       - NOTE - Never import the db object inside a 'use client' component. This would expose the database to the client
+
+# Weekend 2
+- Make basic CRUD pages
+  - Add, View, Edit, Delete
+  - Do I do SSR or CSR?
+
+
 
 
 # Future Plan Notes
